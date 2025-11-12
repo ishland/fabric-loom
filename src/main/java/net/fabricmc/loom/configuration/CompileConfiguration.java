@@ -53,6 +53,7 @@ import org.gradle.api.tasks.javadoc.Javadoc;
 import org.gradle.api.tasks.testing.Test;
 
 import net.fabricmc.loom.LoomGradleExtension;
+import net.fabricmc.loom.api.mappings.layered.MappingsNamespace;
 import net.fabricmc.loom.api.InterfaceInjectionExtensionAPI;
 import net.fabricmc.loom.build.mixin.GroovyApInvoker;
 import net.fabricmc.loom.build.mixin.JavaApInvoker;
@@ -171,6 +172,12 @@ public abstract class CompileConfiguration implements Runnable {
 
 		final MinecraftMetadataProvider metadataProvider = MinecraftMetadataProvider.create(configContext);
 		extension.setMetadataProvider(metadataProvider);
+
+		if (!extension.getProductionNamespace().isPresent()) {
+			extension.getProductionNamespace().set(metadataProvider.getMinecraftVersion().endsWith("_unobfuscated") ? MappingsNamespace.OFFICIAL.toString() : MappingsNamespace.INTERMEDIARY.toString());
+		}
+
+		extension.getProductionNamespace().finalizeValue();
 
 		var jarConfiguration = extension.getMinecraftJarConfiguration().get();
 
