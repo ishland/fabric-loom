@@ -131,6 +131,7 @@ public abstract class GenerateDLIConfigTask extends AbstractLoomTask {
 				.property("fabric.development", "true")
 				.property("log4j.configurationFile", getLog4jConfigPaths().get())
 				.property("log4j2.formatMsgNoLookups", "true")
+				.property("fabric.defaultModDistributionNamespace", getExtension().getProductionNamespaceEnum().toString())
 
 				.argument("client", "--assetIndex")
 				.argument("client", versionInfo.assetIndex().fabricId(getMinecraftVersion().get()))
