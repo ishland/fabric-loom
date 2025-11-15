@@ -24,8 +24,6 @@
 
 package net.fabricmc.loom.test.integration.devOnlyRemap
 
-import java.nio.file.Path
-
 import org.intellij.lang.annotations.Language
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -44,7 +42,7 @@ class SimpleDevOnlyRemapTest extends Specification implements GradleProjectTestT
                 loom {
                     intermediaryUrl = "https://repo.codemc.io/repository/relativitymc/org/relativitymc/intermediary-experimental/25w46a_unobfuscated/intermediary-experimental-25w46a_unobfuscated-v2.jar"
                 }
-                
+
 				dependencies {
 					minecraft 'com.mojang:minecraft:25w46a_unobfuscated'
 					mappings 'net.fabricmc:yarn:25w46a+build.2:v2'
