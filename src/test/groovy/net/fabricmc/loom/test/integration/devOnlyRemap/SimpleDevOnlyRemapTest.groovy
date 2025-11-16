@@ -46,7 +46,7 @@ class SimpleDevOnlyRemapTest extends Specification implements GradleProjectTestT
 				dependencies {
 					minecraft 'com.mojang:minecraft:25w46a_unobfuscated'
 					mappings 'net.fabricmc:yarn:25w46a+build.2:v2'
-					implementation "net.fabricmc:fabric-loader:0.18.0"
+					modImplementation "net.fabricmc:fabric-loader:0.18.0"
                 }
 		"""
 		def sourceFile = new File(gradle.projectDir, "src/main/java/example/Test.java")
@@ -60,7 +60,7 @@ class SimpleDevOnlyRemapTest extends Specification implements GradleProjectTestT
 
 		public class Test {
 			public static void main(String[] args) {
-			    Identifier id = Identifier.fromNamespaceAndPath("loom", "test");
+			    Identifier id = Identifier.of("loom", "test");
 			}
 		}
 		"""
@@ -80,7 +80,7 @@ class SimpleDevOnlyRemapTest extends Specification implements GradleProjectTestT
 	@Unroll
 	def "split build"() {
 		setup:
-		def gradle = gradleProject(project: "minimalBaseNoRemap", version: PRE_RELEASE_GRADLE)
+		def gradle = gradleProject(project: "minimalBase", version: PRE_RELEASE_GRADLE)
 		gradle.buildGradle << """
 				loom {
 					intermediaryUrl = "https://repo.codemc.io/repository/relativitymc/org/relativitymc/intermediary-experimental/25w46a_unobfuscated/intermediary-experimental-25w46a_unobfuscated-v2.jar"
@@ -90,7 +90,7 @@ class SimpleDevOnlyRemapTest extends Specification implements GradleProjectTestT
 				dependencies {
 					minecraft 'com.mojang:minecraft:25w46a_unobfuscated'
 					mappings 'net.fabricmc:yarn:25w46a+build.2:v2'
-					implementation "net.fabricmc:fabric-loader:0.18.0"
+					modImplementation "net.fabricmc:fabric-loader:0.18.0"
                 }
 		"""
 		def sourceFile = new File(gradle.projectDir, "src/main/java/example/Test.java")
@@ -104,7 +104,7 @@ class SimpleDevOnlyRemapTest extends Specification implements GradleProjectTestT
 
 		public class Test {
 			public static void main(String[] args) {
-			    Identifier id = Identifier.fromNamespaceAndPath("loom", "test");
+			    Identifier id = Identifier.of("loom", "test");
 			}
 		}
 		"""
@@ -120,7 +120,7 @@ class SimpleDevOnlyRemapTest extends Specification implements GradleProjectTestT
 	@Unroll
 	def "genSources split build"() {
 		setup:
-		def gradle = gradleProject(project: "minimalBaseNoRemap", version: PRE_RELEASE_GRADLE)
+		def gradle = gradleProject(project: "minimalBase", version: PRE_RELEASE_GRADLE)
 		gradle.buildGradle << """
 				loom {
 					intermediaryUrl = "https://repo.codemc.io/repository/relativitymc/org/relativitymc/intermediary-experimental/25w46a_unobfuscated/intermediary-experimental-25w46a_unobfuscated-v2.jar"
@@ -130,7 +130,7 @@ class SimpleDevOnlyRemapTest extends Specification implements GradleProjectTestT
 				dependencies {
 					minecraft 'com.mojang:minecraft:25w46a_unobfuscated'
 					mappings 'net.fabricmc:yarn:25w46a+build.2:v2'
-					implementation "net.fabricmc:fabric-loader:0.18.0"
+					modImplementation "net.fabricmc:fabric-loader:0.18.0"
                 }
 		"""
 
